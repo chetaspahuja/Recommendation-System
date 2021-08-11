@@ -8,4 +8,5 @@ It can be majorly divided intop 3 parts
 3) It can also recommend the most rated products based on it's description.
 
 Dataset Used : https://www.kaggle.com/skillsmuggler/amazon-ratings 
+
 Dataset for implementing recommendations using descriptions : https://www.kaggle.com/c/home-depot-product-search-relevance/data 
