@@ -7,6 +7,9 @@ It can be majorly divided intop 3 parts
 2) For an existing user , it can return list of products using the items he purchased.
 3) It can also recommend the most rated products based on it's description.
 
-Dataset Used : https://www.kaggle.com/skillsmuggler/amazon-ratings 
+The data sets are from : 
 
-Dataset for implementing recommendations using descriptions : https://www.kaggle.com/c/home-depot-product-search-relevance/data 
+Amazon product ratings by multipe users: https://www.kaggle.com/skillsmuggler/amazon-ratings
+
+Home Depot products with descriptions , for implementing recommendations based on product descriptions : https://www.kaggle.com/c/home-depot-product-search-relevance/data
+
