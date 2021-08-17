@@ -101,12 +101,18 @@ product_description.shape
 
 product_description.head() #By defualt head(5) -> top 5 most values 
 
+product_description1 = product_description.head(500) 
+product_description1.shape 
+product_description1["product_description"].head(10)
+
 #  Converting the text into numerical for data analysis 
 vectorizer = TfidfVectorizer(stop_words = 'english') 
-X1 = vectorizer.fit_transform(product_description["product_description"]) 
+X1 = vectorizer.fit_transform(product_description1["product_description"]) 
 # print(X1) 
 
+# Visualising product cluster in subset of data 
 
+# fitting kmeans into dataset           
 X=X1
 
 kmeans = KMeans(n_clusters = 10, init = 'k-means++')
@@ -114,4 +120,32 @@ y_kmeans = kmeans.fit_predict(X)
 plt.plot(y_kmeans, ".")
 plt.show()
 
-# Reduce the dataset , takes long time to process 
+
+true_k = 10
+
+model = KMeans(n_clusters = true_k , init = 'k-means++' ,  max_iter = 100, n_init = 1)
+model.fit(X1)
+
+print("Top terms per cluster:")
+order_centroids = model.cluster_centers_.argsort()[:, ::-1]
+terms = vectorizer.get_feature_names()
+
+for i in range(true_k):
+    print("Cluster %d:" % i),
+    for ind in order_centroids[i, :10]:
+        print(' %s' % terms[ind]),
+    print
+    
+print("Cluster ID:")
+Y = vectorizer.transform(["cutting tool"])
+prediction = model.predict(Y)
+print(prediction)
+
+# In case a word appears in multiple clusters, the algorithm chooses the cluster with the highest frequency of occurance of the word.
+
+print("Cluster ID:")
+Y = vectorizer.transform(["water bulb"])
+prediction = model.predict(Y) 
+print(prediction) 
+
+# Once a cluster is identified based on the user's search words, the recommendation system can display items from the corresponding product clusters based on the product descriptions.
